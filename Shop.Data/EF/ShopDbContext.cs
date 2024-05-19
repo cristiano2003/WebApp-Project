@@ -19,8 +19,10 @@ namespace eShopSolution.Data.EF
        protected override void OnModelCreating(ModelBuilder modelbuilder)
         {
             modelbuilder.ApplyConfiguration(new AppConfigConfiguration());
-
-           // base.OnModelCreating(modelbuilder);
+            modelbuilder.ApplyConfiguration(new ProductConfiguration());
+            modelbuilder.ApplyConfiguration(new CategoryConfiguration());
+            modelbuilder.ApplyConfiguration(new ProductInCategoryConfiguration());
+            // base.OnModelCreating(modelbuilder);
         }
 
         public DbSet<Product> Products { get; set; }

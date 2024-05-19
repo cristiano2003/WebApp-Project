@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Transactions;
 
-namespace eShopSolution.Data.Entities
+namespace Shop.Data.Entities
 {
     public class AppUser : IdentityUser<Guid>
     {

@@ -16,5 +16,5 @@ namespace Shop.Data.Entities
 
         public Product Product { get; set; }
 
-    }
+       
 }
