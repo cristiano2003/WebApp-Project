@@ -1,14 +1,13 @@
 ﻿using Shop.Data.Configurations;
 using Shop.Data.Entities;
-
-using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Reflection.Emit;
 
-namespace eShopSolution.Data.EF
+
+namespace Shop.Data.EF
 {
     public class ShopDbContext : DbContext
     {
@@ -16,13 +15,28 @@ namespace eShopSolution.Data.EF
         {
         }
 
-       protected override void OnModelCreating(ModelBuilder modelbuilder)
+       protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelbuilder.ApplyConfiguration(new AppConfigConfiguration());
-            modelbuilder.ApplyConfiguration(new ProductConfiguration());
-            modelbuilder.ApplyConfiguration(new CategoryConfiguration());
-            modelbuilder.ApplyConfiguration(new ProductInCategoryConfiguration());
-            // base.OnModelCreating(modelbuilder);
+            modelBuilder.ApplyConfiguration(new CartConfiguration());
+
+            modelBuilder.ApplyConfiguration(new AppConfigConfiguration());
+            modelBuilder.ApplyConfiguration(new ProductConfiguration());
+            modelBuilder.ApplyConfiguration(new CategoryConfiguration());
+            modelBuilder.ApplyConfiguration(new ProductInCategoryConfiguration());
+            modelBuilder.ApplyConfiguration(new OrderConfiguration());
+
+            modelBuilder.ApplyConfiguration(new OrderDetailConfiguration());
+            modelBuilder.ApplyConfiguration(new CategoryTranslationConfiguration());
+            modelBuilder.ApplyConfiguration(new ContactConfiguration());
+            modelBuilder.ApplyConfiguration(new LanguageConfiguration());
+            modelBuilder.ApplyConfiguration(new ProductTranslationConfiguration());
+            modelBuilder.ApplyConfiguration(new PromotionConfiguration());
+            modelBuilder.ApplyConfiguration(new TransactionConfiguration());
+
+            modelBuilder.ApplyConfiguration(new AppUserConfiguration());
+            modelBuilder.ApplyConfiguration(new AppRoleConfiguration());
+            modelBuilder.ApplyConfiguration(new ProductImageConfiguration());
+            modelBuilder.ApplyConfiguration(new SlideConfiguration());
         }
 
         public DbSet<Product> Products { get; set; }

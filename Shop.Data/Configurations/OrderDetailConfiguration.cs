@@ -1,4 +1,4 @@
-﻿using eShopSolution.Data.Entities;
+﻿using Shop.Data.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Shop.Data.Entities;
@@ -6,7 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace eShopSolution.Data.Configurations
+namespace Shop.Data.Configurations
 {
     public class OrderDetailConfiguration : IEntityTypeConfiguration<OrderDetail>
     {
