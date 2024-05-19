@@ -109,7 +109,7 @@ namespace Shop.Data.Extensions
                 SecurityStamp = string.Empty,
                 FirstName = "Truc",
                 LastName = "Nguyen",
-                Dob = new DateTime(2020, 01, 31)
+                Dob = new DateTime(2020, 01, 31) 
             });
 
            // modelBuilder.Entity<IdentityUserRole<string>>().HasData(new IdentityUserRole<string>
