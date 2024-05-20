@@ -1,13 +1,15 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Shop.Application.Catalog.Products.Dtos;
-using Shop.Application.Dtos;
+
 using Shop.Data.EF;
 using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Linq;
-using Shop.Application.Catalog.Products.Dtos.Public;
+
 using System.Threading.Tasks;
+using Shop.ViewModels.Catalog.Products;
+using Shop.ViewModels.Catalog.Products.Public;
+using Shop.ViewModels.Common;
 
 namespace Shop.Application.Catalog.Products
 {

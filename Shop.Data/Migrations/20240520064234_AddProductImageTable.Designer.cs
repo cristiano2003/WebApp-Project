@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Shop.Data.EF;
 
 namespace Shop.Data.Migrations
 {
     [DbContext(typeof(ShopDbContext))]
-    partial class ShopDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240520064234_AddProductImageTable")]
+    partial class AddProductImageTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -173,7 +175,7 @@ namespace Shop.Data.Migrations
                         new
                         {
                             Id = new Guid("8d04dce2-969a-435d-bba4-df3f325983dc"),
-                            ConcurrencyStamp = "e5489ccd-65a9-43d7-9a3e-4e41a7db9104",
+                            ConcurrencyStamp = "d1bc410b-f542-47d0-b542-842eda52b733",
                             Description = "Administrator role",
                             Name = "admin",
                             NormalizedName = "admin"
@@ -250,7 +252,7 @@ namespace Shop.Data.Migrations
                         {
                             Id = new Guid("69bd714f-9576-45ba-b5b7-f00649be00de"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "8225dea7-eeb0-479f-bd00-0b141f50004a",
+                            ConcurrencyStamp = "718d4d33-cd83-49c3-ab14-c8762d27936d",
                             Dob = new DateTime(2020, 1, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "nguyentrungtrucl@gmail.com",
                             EmailConfirmed = true,
@@ -259,7 +261,7 @@ namespace Shop.Data.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "trungtruc.international@gmail.com",
                             NormalizedUserName = "admin",
-                            PasswordHash = "AQAAAAEAACcQAAAAEJvMGNfPFxgl+vijhsAARZzy2/86FL37AUJl5S5KepBzhAl9mXbjKTnDIVs1OSnl/A==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEGBXnwS35M2WGeoivME4FiDmYysHwfb8RDPojjaGNHW+2GaBrymq35l+F/0YScDQ9A==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             TwoFactorEnabled = false,
@@ -591,7 +593,7 @@ namespace Shop.Data.Migrations
                         new
                         {
                             Id = 1,
-                            DateCreated = new DateTime(2024, 5, 20, 16, 10, 45, 638, DateTimeKind.Local).AddTicks(8524),
+                            DateCreated = new DateTime(2024, 5, 20, 13, 42, 33, 800, DateTimeKind.Local).AddTicks(903),
                             OriginalPrice = 100000m,
                             Price = 200000m,
                             Stock = 0,

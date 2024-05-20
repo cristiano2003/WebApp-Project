@@ -1,14 +1,16 @@
-﻿using Shop.Data.Entities;
+﻿using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Shop.Application.Catalog.Products.Dtos
+namespace Shop.ViewModels.Catalog.Products.Manage
 {
-    public class ProductUpdateRequest
+    public class ProductCreateRequest
     {
-        public int Id { set; get; }
-    
+
+        public decimal Price { set; get; }
+        public decimal OriginalPrice { set; get; }
+        public int Stock { set; get; }
         public string Name { set; get; }
         public string Description { set; get; }
         public string Details { set; get; }
@@ -18,5 +20,6 @@ namespace Shop.Application.Catalog.Products.Dtos
         public string SeoAlias { get; set; }
         public string LanguageId { set; get; }
 
+        public IFormFile ThumbnailImage { set; get; }
     }
 }
