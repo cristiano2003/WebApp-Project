@@ -9,8 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.VisualBasic;
-using Shop.ViewModels.Catalog.Products.Manage;
+using Microsoft.VisualBasic; 
 using Shop.ViewModels.Catalog.Products;
 using Shop.ViewModels.Common;
 using Microsoft.AspNetCore.Http;
@@ -101,7 +100,7 @@ namespace Shop.Application.Catalog.Products
 
 
 
-        public async Task<PageResult<ProductViewModel>> GetAllPaging(GetProductPagingRequest request)
+        public async Task<PageResult<ProductViewModel>> GetAllPaging(GetManageProductPagingRequest request)
         {
             var query = from p in _context.Products
                         join pt in _context.ProductTranslations on p.Id equals pt.ProductId

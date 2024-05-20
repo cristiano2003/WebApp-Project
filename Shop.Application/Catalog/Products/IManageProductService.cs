@@ -3,7 +3,6 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
-using Shop.ViewModels.Catalog.Products.Manage;
 using Shop.ViewModels.Common;
 using Microsoft.AspNetCore.Http;
 
@@ -24,7 +23,7 @@ namespace Shop.Application.Catalog.Products
 
         Task AddViewCount(int productId);
 
-        Task<PageResult<ProductViewModel>> GetAllPaging(GetProductPagingRequest request);
+        Task<PageResult<ProductViewModel>> GetAllPaging(GetManageProductPagingRequest request);
 
         Task<int> AddImages(int productId, List<IFormFile> files);
 

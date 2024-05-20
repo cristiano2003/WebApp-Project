@@ -1,6 +1,5 @@
 ﻿
 using Shop.ViewModels.Catalog.Products;
-using Shop.ViewModels.Catalog.Products.Public;
 using Shop.ViewModels.Common;
 using System;
 using System.Collections.Generic;
@@ -11,6 +10,8 @@ namespace Shop.Application.Catalog.Products
 {
     public interface IPublicProductService
     {
-        public Task<PageResult<ProductViewModel>> GetAllByCategoryId(GetProductPagingRequest request);
+        public Task<PageResult<ProductViewModel>> GetAllByCategoryId(GetPublicProductPagingRequest request);
+
+        public Task<List<ProductViewModel>> GetAll();
     }
 }
