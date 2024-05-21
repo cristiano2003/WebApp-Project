@@ -182,7 +182,6 @@ namespace Shop.Application.Catalog.Products
             return await _context.SaveChangesAsync();
         }
 
-
     
 
         public async Task<bool> UpdatePrice(int productId, decimal newPrice)
