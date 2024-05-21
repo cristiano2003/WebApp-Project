@@ -15,6 +15,9 @@ using System.Threading.Tasks;
 using Swashbuckle.AspNetCore.Swagger;
 using Microsoft.OpenApi.Models;
 using Shop.Application.Common;
+using Microsoft.AspNetCore.Identity;
+using Shop.Data.Entities;
+using Shop.Application.System.Users;
 
 namespace Shop.BackendApi
 {
@@ -39,9 +42,17 @@ namespace Shop.BackendApi
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Swagger Shop", Version = "v1" });
             });
 
+
+            services.AddIdentity<AppUser, AppRole>()
+                .AddEntityFrameworkStores<ShopDbContext>()
+                .AddDefaultTokenProviders();
             services.AddTransient<IPublicProductService, PublicProductService>();
             services.AddTransient<IManageProductService, ManageProductService>();
             services.AddTransient<IStorageService, FileStorageService>();
+            services.AddTransient<UserManager<AppUser>, UserManager<AppUser>>();
+            services.AddTransient<SignInManager<AppUser>, SignInManager<AppUser>>();
+            services.AddTransient<RoleManager<AppRole>, RoleManager<AppRole>>();
+            services.AddTransient<IUserService, UserService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
