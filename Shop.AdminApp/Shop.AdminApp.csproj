@@ -1,0 +1,28 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="wwwroot\lib\bootstrap\**" />
+    <Content Remove="wwwroot\lib\bootstrap\**" />
+    <EmbeddedResource Remove="wwwroot\lib\bootstrap\**" />
+    <None Remove="wwwroot\lib\bootstrap\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\lib\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\assets\demo\chart-area-demo.js" />
+    <None Include="wwwroot\assets\demo\chart-bar-demo.js" />
+    <None Include="wwwroot\assets\demo\chart-pie-demo.js" />
+    <None Include="wwwroot\assets\demo\datatables-demo.js" />
+    <None Include="wwwroot\assets\img\error-404-monochrome.svg" />
+    <None Include="wwwroot\js\datatables-simple-demo.js" />
+    <None Include="wwwroot\js\scripts.js" />
+  </ItemGroup>
+
+</Project>
