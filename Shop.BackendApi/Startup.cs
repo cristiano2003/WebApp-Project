@@ -20,6 +20,9 @@ using Shop.Data.Entities;
 using Shop.Application.System.Users;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
+using FluentValidation.AspNetCore;
+using FluentValidation;
+using Shop.ViewModels.System.Users;
 
 namespace Shop.BackendApi
 {
@@ -48,7 +51,12 @@ namespace Shop.BackendApi
             services.AddTransient<SignInManager<AppUser>, SignInManager<AppUser>>();
             services.AddTransient<RoleManager<AppRole>, RoleManager<AppRole>>();
             services.AddTransient<IUserService, UserService>();
-            services.AddControllers();
+          //  services.AddTransient<IValidator<LoginRequest>, LoginRequestValidator>();
+           // services.AddTransient<IValidator<RegisterRequest>,RegisterRequestValidator>();
+
+
+            services.AddControllers()
+             .AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<LoginRequestValidator>());
 
             services.AddSwaggerGen(c =>
             {
