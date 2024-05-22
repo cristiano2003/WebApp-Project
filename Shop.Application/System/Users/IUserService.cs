@@ -1,4 +1,6 @@
-﻿using Shop.ViewModels.System.Users;
+﻿using Microsoft.AspNetCore.Mvc.RazorPages;
+using Shop.ViewModels.Common;
+using Shop.ViewModels.System.Users;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -12,5 +14,7 @@ namespace Shop.Application.System.Users
        
 
        public  Task<bool> Register(RegisterRequest request);
+
+        public Task<PageResult<UserVm>> GetUsersPaging(GetUserPagingRequest request);
     }
 }

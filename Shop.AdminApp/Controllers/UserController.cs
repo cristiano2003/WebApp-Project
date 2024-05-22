@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Logging;
@@ -27,9 +28,20 @@ namespace Shop.AdminApp.Controllers
                 _userApiClient = userApiClient;
                 _configuration = configuration;
         }
-        public IActionResult Index()
+        public async Task<IActionResult> Index(string keyword, int pageIndex = 1, int pageSize = 10)
         {
-            return View();
+            var sessions = HttpContext.Session.GetString("Token");
+            var request = new GetUserPagingRequest()
+
+            {
+                BearerToken = sessions,
+                Keyword = keyword,
+                PageSize = pageSize,
+                PageIndex = pageIndex
+            };
+            var data = await _userApiClient.GetUsersPagings(request);
+
+            return View(data);
         }
 
         [HttpGet]
@@ -52,9 +64,10 @@ namespace Shop.AdminApp.Controllers
             var authProperties = new AuthenticationProperties
             {
                 ExpiresUtc = System.DateTimeOffset.UtcNow.AddMinutes(10),
-                IsPersistent = true
+                IsPersistent = false
             };
 
+            HttpContext.Session.SetString("Token", token);
             await HttpContext.SignInAsync(
         CookieAuthenticationDefaults.AuthenticationScheme,
         userPrincipal,
