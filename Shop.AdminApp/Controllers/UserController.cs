@@ -10,7 +10,7 @@ namespace Shop.AdminApp.Controllers
             return View();
         }
 
-        [HttpGet] 
+        [HttpGet]
         public IActionResult Login()
         {
             return View();
