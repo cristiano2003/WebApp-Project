@@ -25,4 +25,8 @@
     <None Include="wwwroot\js\scripts.js" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Shop.ViewModels\Shop.ViewModels.csproj" />
+  </ItemGroup>
+
 </Project>
