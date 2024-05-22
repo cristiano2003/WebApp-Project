@@ -9,4 +9,4 @@ namespace Shop.ViewModels.Catalog.Products
     {
         public int? CategoryId { get; set; }
     }
-}
+} 

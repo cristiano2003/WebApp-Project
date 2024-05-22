@@ -25,4 +25,13 @@
     <None Include="wwwroot\js\scripts.js" />
   </ItemGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.5" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Shop.Application\Shop.Application.csproj" />
+    <ProjectReference Include="..\Shop.ViewModels\Shop.ViewModels.csproj" />
+  </ItemGroup>
+
 </Project>
