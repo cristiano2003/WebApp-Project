@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Text;
 
 namespace Shop.ViewModels.System.Users
@@ -10,6 +11,7 @@ namespace Shop.ViewModels.System.Users
 
         public string LastName { get; set; }
 
+        [DataType(DataType.Date)]
         public DateTime Dob { get; set; }
 
         public string Email { get; set; }
@@ -18,6 +20,7 @@ namespace Shop.ViewModels.System.Users
 
         public string UserName { get; set; }
 
+        [DataType(DataType.Password)]
         public string Password { get; set; }
 
         public string ConfirmPassword { get; set; }

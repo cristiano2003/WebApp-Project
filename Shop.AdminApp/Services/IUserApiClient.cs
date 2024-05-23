@@ -9,5 +9,7 @@ namespace Shop.AdminApp.Services
         Task<string> Authenticate(LoginRequest request);
 
         Task<PageResult<UserVm>> GetUsersPagings(GetUserPagingRequest request); 
+
+        Task<bool> RegisterUser(RegisterRequest request);
     }
 }
