@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
@@ -10,6 +11,7 @@ using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,6 +24,7 @@ namespace Shop.Application.System.Users
         private readonly SignInManager<AppUser> _signInManager;
         private readonly RoleManager<AppRole> _roleManager;
         private readonly IConfiguration _configuration;
+       
         public UserService(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager, RoleManager<AppRole> roleManager,
             IConfiguration config)
             
@@ -29,18 +32,20 @@ namespace Shop.Application.System.Users
             _userManager = userManager;
             _signInManager = signInManager;
             _roleManager = roleManager;
+            
             _configuration = config;
         }
 
-        public async Task<string> Authenticate(LoginRequest request)
+        public async Task<ApiResult<string>> Authenticate(LoginRequest request)
         {
             {
                 var user = await _userManager.FindByNameAsync(request.UserName);
+                if (user == null) return null;
 
                 var result = await _signInManager.PasswordSignInAsync(user, request.Password, request.RememberMe, true);
                 if (!result.Succeeded)
                 {
-                    return null;
+                    return new ApiErrorResult<string>("Login Info is incorrect");
                 }
                 var roles = await _userManager.GetRolesAsync(user);
                 var claims = new[]
@@ -59,11 +64,34 @@ namespace Shop.Application.System.Users
                     expires: DateTime.Now.AddHours(3),
                     signingCredentials: creds);
 
-                return new JwtSecurityTokenHandler().WriteToken(token);
-        }
+                return new ApiSuccessResult<string>(new JwtSecurityTokenHandler().WriteToken(token));
+            }
         }
 
-        public async Task<PageResult<UserVm>> GetUsersPaging(GetUserPagingRequest request)
+        public async Task<ApiResult<UserVm>> GetById(Guid id)
+        {
+            var user = await _userManager.FindByIdAsync(id.ToString());
+            if (user == null)
+            {
+                return new ApiErrorResult<UserVm>("User does not exist");
+            }
+
+            var userVm = new UserVm()
+            { 
+            Email = user.Email,
+            UserName = user.UserName,
+             PhoneNumber = user.PhoneNumber,
+            FirstName=user.FirstName,
+            LastName=user.LastName,
+            Dob = user.Dob,
+            Id = user.Id};
+
+            return new ApiSuccessResult<UserVm>(userVm);
+
+        }
+
+
+        public async Task<ApiResult<PageResult<UserVm>>> GetUsersPaging(GetUserPagingRequest request)
         {
             var query = _userManager.Users;
             if (!string.IsNullOrEmpty(request.Keyword))
@@ -77,6 +105,7 @@ namespace Shop.Application.System.Users
                 .Take(request.PageSize)
                 .Select(x => new UserVm()
                 {
+                    Id = x.Id,
                    Email  = x.Email,
                    PhoneNumber = x.PhoneNumber,
                    UserName = x.UserName,  
@@ -86,18 +115,30 @@ namespace Shop.Application.System.Users
 
             var pageResult = new PageResult<UserVm>()
             {
-                TotalRecord = totalRow,
-                Items = data
+                TotalRecords = totalRow,
+                Items = data,
+                PageIndex = request.PageIndex,
+                PageSize = request.PageSize
             };
 
-            return pageResult;
+            return new ApiSuccessResult<PageResult<UserVm>>(pageResult);
         }
 
-        public async Task<bool> Register(RegisterRequest request)
+        public async Task<ApiResult<bool>> Register(RegisterRequest request)
         {
-            
+            var user = await _userManager.FindByNameAsync(request.UserName);
+            if (user != null)
+                 {
+                return new ApiErrorResult<bool>("UserName existed");
 
-           var user = new AppUser()
+            }
+
+            if (await _userManager.FindByEmailAsync(request.Email) != null)
+            {
+                return new ApiErrorResult<bool>("Email existed");
+            }  
+
+           user = new AppUser()
             {
                 Dob = request.Dob,
                 Email = request.Email,
@@ -109,10 +150,37 @@ namespace Shop.Application.System.Users
             var result = await _userManager.CreateAsync(user, request.Password);
             if (result.Succeeded)
             {
-                return true;
+                return new ApiSuccessResult<bool>();
 
              }
-            return false;
+            return new ApiErrorResult<bool>("Register failed");
         }
+
+        public async Task<ApiResult<bool>> Update(Guid id, UserUpdateRequest request)
+       {
+
+            if (await _userManager.Users.AnyAsync(x=>x.Email==request.Email && x.Id != id))
+            {
+                return new ApiErrorResult<bool>("Email existed");
+            }
+
+            var user = await _userManager.FindByIdAsync(id.ToString());
+            
+
+            user.Dob = request.Dob;
+            user.Email = request.Email;
+            user.FirstName = request.FirstName;
+            user.LastName = request.LastName;
+            user.PhoneNumber = request.PhoneNumber;
+            
+            var result = await _userManager.UpdateAsync(user);
+            if (result.Succeeded)
+            {
+                return new ApiSuccessResult<bool>();
+
+            }
+            return new ApiErrorResult<bool>("Update failed");
+        }
+
     }
 }

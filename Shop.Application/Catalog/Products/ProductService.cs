@@ -142,7 +142,7 @@ namespace Shop.Application.Catalog.Products
 
             var pageResult = new PageResult<ProductViewModel>()
             {
-                TotalRecord = totalRow,
+                TotalRecords = totalRow,
                 Items = data
             };
 
@@ -360,7 +360,7 @@ namespace Shop.Application.Catalog.Products
 
             var pageResult = new PageResult<ProductViewModel>()
             {
-                TotalRecord = totalRow,
+                TotalRecords = totalRow,
                 Items = data
             };
 

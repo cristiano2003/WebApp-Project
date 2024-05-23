@@ -30,7 +30,7 @@ namespace Shop.AdminApp
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
    .AddCookie(options =>
    {
-       options.LoginPath = "/User/Login/";
+       options.LoginPath = "/Login/Index";
        options.AccessDeniedPath = "/User/Forbidden/";
 
    });
@@ -43,7 +43,7 @@ namespace Shop.AdminApp
             {
                 options.IdleTimeout = TimeSpan.FromMinutes(30);
             });
-
+            services.AddSingleton<Microsoft.AspNetCore.Http.IHttpContextAccessor, Microsoft.AspNetCore.Http.HttpContextAccessor>();
             services.AddTransient<IUserApiClient, UserApiClient>();
         }
 
