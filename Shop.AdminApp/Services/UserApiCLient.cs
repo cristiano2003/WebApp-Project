@@ -4,6 +4,7 @@ using Newtonsoft.Json;
 using Shop.ViewModels.Common;
 using Shop.ViewModels.System.Users;
 using System;
+using System.Diagnostics.Eventing.Reader;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Runtime.InteropServices;
@@ -44,6 +45,21 @@ namespace Shop.AdminApp.Services
           
         }
 
+        public async Task<ApiResult<bool>> Delete(Guid id)
+        {
+            var sessions = _httpContextAccessor.HttpContext.Session.GetString("Token");
+            var client = _httpClientFactory.CreateClient();
+            client.BaseAddress = new Uri(_configuration["BaseAddress"]);
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", sessions);
+            var response = await client.DeleteAsync($"/api/users/{id}");
+            var body = await response.Content.ReadAsStringAsync();
+            if (response.IsSuccessStatusCode)
+
+                return JsonConvert.DeserializeObject<ApiSuccessResult<bool>>(body);
+
+            return JsonConvert.DeserializeObject<ApiErrorResult<bool>>(body);
+        }
+
         public async Task<ApiResult<UserVm>> GetById(Guid id)
         {
             var sessions = _httpContextAccessor.HttpContext.Session.GetString("Token");
@@ -56,7 +72,7 @@ namespace Shop.AdminApp.Services
 
                 return JsonConvert.DeserializeObject<ApiSuccessResult<UserVm>>(body);
 
-            return  JsonConvert.DeserializeObject<ApiSuccessResult<UserVm>>(body);
+            return  JsonConvert.DeserializeObject<ApiErrorResult<UserVm>>(body);
         }
 
 
@@ -71,7 +87,7 @@ namespace Shop.AdminApp.Services
                 $"{request.PageIndex}&pageSize={request.PageSize}&Keyword={request.Keyword}");
             var body = await response.Content.ReadAsStringAsync();
             var users = JsonConvert.DeserializeObject<ApiSuccessResult<PageResult<UserVm>>>(body);
-
+            
             return users; 
         }
 

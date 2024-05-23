@@ -44,12 +44,7 @@ namespace Shop.AdminApp.Controllers
             return View(data.ResultObj);
         }
 
-        [HttpGet]
-        public IActionResult Create()
-        {
-      
-            return View();
-        }
+    
 
         [HttpGet]
         public async Task<IActionResult> Edit(Guid id)
@@ -96,7 +91,13 @@ namespace Shop.AdminApp.Controllers
 
             return View(result.ResultObj);
         }
-             
+
+        [HttpGet]
+        public IActionResult Create()
+        {
+            return View();
+        }
+
         [HttpPost]
         public async Task<IActionResult> Create(RegisterRequest request)
         {
@@ -112,9 +113,6 @@ namespace Shop.AdminApp.Controllers
         }
 
 
-
-
-
         [HttpPost]
         public async Task<IActionResult> Logout()
         {
@@ -122,6 +120,31 @@ namespace Shop.AdminApp.Controllers
            
             return RedirectToAction("Login", "User");
         }
+
+
+        [HttpGet]
+        public IActionResult Delete(Guid id)
+        {
+            return View(new UserDeleteRequest
+            {
+                Id = id
+            }); 
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Delete(UserDeleteRequest request)
+        {
+            if (!ModelState.IsValid)
+                return View();
+
+            var result = await _userApiClient.Delete(request.Id);
+            if (result.IsSucceeded)
+                return RedirectToAction("Index");
+
+            ModelState.AddModelError("", result.Message);
+            return View(request);
+        }
+
 
 
     }

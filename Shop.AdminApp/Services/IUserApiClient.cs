@@ -16,5 +16,7 @@ namespace Shop.AdminApp.Services
         Task<ApiResult<bool>> RegisterUser(RegisterRequest request);
 
         Task<ApiResult<UserVm>> GetById(Guid id);
+
+        Task<ApiResult<bool>> Delete(Guid id);
     }
 }
