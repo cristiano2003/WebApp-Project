@@ -79,6 +79,7 @@ namespace Shop.Application.System.Users
             var userVm = new UserVm()
             { 
             Email = user.Email,
+            UserName = user.UserName,
              PhoneNumber = user.PhoneNumber,
             FirstName=user.FirstName,
             LastName=user.LastName,
@@ -114,8 +115,10 @@ namespace Shop.Application.System.Users
 
             var pageResult = new PageResult<UserVm>()
             {
-                TotalRecord = totalRow,
-                Items = data
+                TotalRecords = totalRow,
+                Items = data,
+                PageIndex = request.PageIndex,
+                PageSize = request.PageSize
             };
 
             return new ApiSuccessResult<PageResult<UserVm>>(pageResult);

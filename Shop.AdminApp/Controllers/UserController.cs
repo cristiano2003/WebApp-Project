@@ -29,7 +29,7 @@ namespace Shop.AdminApp.Controllers
                 _userApiClient = userApiClient;
                 _configuration = configuration;
         }
-        public async Task<IActionResult> Index(string keyword, int pageIndex = 1, int pageSize = 10)
+        public async Task<IActionResult> Index(string keyword, int pageIndex = 1, int pageSize = 1)
         {
            
             var request = new GetUserPagingRequest()
@@ -89,6 +89,14 @@ namespace Shop.AdminApp.Controllers
             return View(request);
         }
 
+        [HttpGet]
+        public async Task<IActionResult> Details(Guid id)
+        {
+            var result = await _userApiClient.GetById(id);
+
+            return View(result.ResultObj);
+        }
+             
         [HttpPost]
         public async Task<IActionResult> Create(RegisterRequest request)
         {
