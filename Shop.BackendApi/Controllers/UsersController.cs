@@ -88,6 +88,14 @@ namespace Shop.BackendApi.Controllers
             return Ok(user);
         }
 
+        [HttpDelete("{id}")]
+        public async Task<ActionResult> Delete(Guid id)
+        {
+            var user = await _userService.Delete(id);
+
+            return Ok(user);
+        }
+
 
     }
 }
