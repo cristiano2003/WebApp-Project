@@ -31,6 +31,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Shop.Utilities\Shop.Utilities.csproj" />
     <ProjectReference Include="..\Shop.ViewModels\Shop.ViewModels.csproj" />
   </ItemGroup>
 
