@@ -24,7 +24,7 @@ using FluentValidation.AspNetCore;
 using FluentValidation;
 using Shop.ViewModels.System.Users;
 using Shop.Application.System.Roles;
-
+using Shop.Application.System.Languages;
 
 namespace Shop.BackendApi
 {
@@ -52,9 +52,9 @@ namespace Shop.BackendApi
             services.AddTransient<UserManager<AppUser>, UserManager<AppUser>>();
             services.AddTransient<SignInManager<AppUser>, SignInManager<AppUser>>();
             services.AddTransient<RoleManager<AppRole>, RoleManager<AppRole>>();
+            services.AddTransient<ILanguageService, LanguageService>();
             services.AddTransient<IUserService, UserService>();
             services.AddTransient<IRoleService, RoleService>();
-         
             //  services.AddTransient<IValidator<LoginRequest>, LoginRequestValidator>();
             // services.AddTransient<IValidator<RegisterRequest>,RegisterRequestValidator>();
 
