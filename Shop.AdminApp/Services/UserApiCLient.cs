@@ -35,14 +35,14 @@ namespace Shop.AdminApp.Services
             var client = _httpClientFactory.CreateClient();
             client.BaseAddress = new Uri("https://localhost:5001");
             var response = await client.PostAsync("/api/users/authenticate", httpContent);
+            var message = await response.Content.ReadAsStringAsync();
             if (response.IsSuccessStatusCode)
             {
-                return JsonConvert.DeserializeObject<ApiSuccessResult<string>>(await response.Content.ReadAsStringAsync());
+                return JsonConvert.DeserializeObject<ApiSuccessResult<string>>(message);
             }
 
-            return JsonConvert.DeserializeObject<ApiErrorResult<string>>(await response.Content.ReadAsStringAsync());
-
-          
+            return JsonConvert.DeserializeObject<ApiErrorResult<string>>(message);
+ 
         }
 
         public async Task<ApiResult<bool>> Delete(Guid id)
