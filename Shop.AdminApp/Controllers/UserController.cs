@@ -41,6 +41,10 @@ namespace Shop.AdminApp.Controllers
             };
             var data = await _userApiClient.GetUsersPagings(request);
             ViewBag.Keyword = keyword;
+            if (TempData["result"] != null)
+            {
+                ViewBag.SuccessMsg = TempData["result"];
+            }
             return View(data.ResultObj);
         }
 
@@ -78,8 +82,10 @@ namespace Shop.AdminApp.Controllers
 
             var result = await _userApiClient.UpdateUser(request.Id, request);
             if (result.IsSucceeded)
+            {
+                TempData["result"] = "success";
                 return RedirectToAction("Index");
-
+            }
             ModelState.AddModelError("", result.Message);
             return View(request);
         }
@@ -106,8 +112,10 @@ namespace Shop.AdminApp.Controllers
 
             var result = await _userApiClient.RegisterUser(request);
             if (result.IsSucceeded)
+            {
+                TempData["result"] = "success";
                 return RedirectToAction("Index");
-
+            }
             ModelState.AddModelError("", result.Message);
             return View(request);
         }
@@ -139,7 +147,10 @@ namespace Shop.AdminApp.Controllers
 
             var result = await _userApiClient.Delete(request.Id);
             if (result.IsSucceeded)
+            {
+                TempData["result"] = "success";
                 return RedirectToAction("Index");
+            }
 
             ModelState.AddModelError("", result.Message);
             return View(request);
