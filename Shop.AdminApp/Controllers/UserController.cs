@@ -29,7 +29,7 @@ namespace Shop.AdminApp.Controllers
                 _userApiClient = userApiClient;
                 _configuration = configuration;
         }
-        public async Task<IActionResult> Index(string keyword, int pageIndex = 1, int pageSize = 1)
+        public async Task<IActionResult> Index(string keyword, int pageIndex = 1, int pageSize = 10)
         {
            
             var request = new GetUserPagingRequest()
@@ -40,7 +40,7 @@ namespace Shop.AdminApp.Controllers
                 PageIndex = pageIndex
             };
             var data = await _userApiClient.GetUsersPagings(request);
-
+            ViewBag.Keyword = keyword;
             return View(data.ResultObj);
         }
 
@@ -89,7 +89,7 @@ namespace Shop.AdminApp.Controllers
         {
             var result = await _userApiClient.GetById(id);
 
-            return View(result.ResultObj);
+            return View(result.ResultObj); 
         }
 
         [HttpGet]
@@ -118,7 +118,7 @@ namespace Shop.AdminApp.Controllers
         {
             await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
            
-            return RedirectToAction("Login", "User");
+            return RedirectToAction("Index", "Login");
         }
 
 
