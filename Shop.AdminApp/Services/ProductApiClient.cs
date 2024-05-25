@@ -79,7 +79,7 @@ namespace Shop.AdminApp.Services
                 var data = await GetAsync<PageResult<ProductVm>>(
                     $"/api/products/paging?pageIndex={request.PageIndex}" +
                     $"&pageSize={request.PageSize}" +
-                    $"&keyword={request.Keyword}&languageId={request.LanguageId}");
+                    $"&keyword={request.Keyword}&languageId={request.LanguageId}&categoryId={request.CategoryId}");
 
                 return data;
             }
