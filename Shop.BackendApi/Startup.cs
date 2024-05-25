@@ -25,6 +25,7 @@ using FluentValidation;
 using Shop.ViewModels.System.Users;
 using Shop.Application.System.Roles;
 using Shop.Application.System.Languages;
+using Shop.Application.Catalog.Categories;
 
 namespace Shop.BackendApi
 {
@@ -48,6 +49,8 @@ namespace Shop.BackendApi
                 .AddEntityFrameworkStores<ShopDbContext>()
                 .AddDefaultTokenProviders();
             services.AddTransient<IProductService, ProductService>();
+            services.AddTransient<ICategoryService, CategoryService>();
+
             services.AddTransient<IStorageService, FileStorageService>();
             services.AddTransient<UserManager<AppUser>, UserManager<AppUser>>();
             services.AddTransient<SignInManager<AppUser>, SignInManager<AppUser>>();

@@ -14,7 +14,7 @@ namespace Shop.AdminApp.Controllers
     {
         private readonly IProductApiClient _productApiClient;
         private readonly IConfiguration _configuration;
-
+        private readonly IPro
         public ProductController(IProductApiClient productApiClient,
             IConfiguration configuration)
         {
@@ -35,6 +35,8 @@ namespace Shop.AdminApp.Controllers
             };
             var data = await _productApiClient.GetPagings(request);
             ViewBag.Keyword = keyword;
+
+
             if (TempData["result "] != null)
             {
                 ViewBag.SuccessMsg = TempData["result"];
