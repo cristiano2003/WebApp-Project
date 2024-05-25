@@ -25,9 +25,9 @@ namespace Shop.Application.Catalog.Products
 
         Task AddViewCount(int productId);
 
-        Task<ProductViewModel> GetById(int productId, string languageId);
+        Task<ProductVm> GetById(int productId, string languageId);
 
-        Task<PageResult<ProductViewModel>> GetAllPaging(GetManageProductPagingRequest request);
+        Task<PageResult<ProductVm>> GetAllPaging(GetManageProductPagingRequest request);
 
         Task<int> AddImage(int productId, ProductImageCreateRequest request);
 
@@ -39,7 +39,7 @@ namespace Shop.Application.Catalog.Products
 
         Task<List<ProductImageViewModel>> GetListImages(int productId);
 
-        public Task<PageResult<ProductViewModel>> GetAllByCategoryId(string languageId, GetPublicProductPagingRequest request);
+        public Task<PageResult<ProductVm>> GetAllByCategoryId(string languageId, GetPublicProductPagingRequest request);
 
     }
 }

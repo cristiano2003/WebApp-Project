@@ -24,10 +24,10 @@ namespace Shop.BackendApi.Controllers
 
 
         // http://localhost:port/product/public-paging
-        [HttpGet("{languageId}")]
-        public async Task<ActionResult> GetAllPaging(string languageId, [FromQuery] GetPublicProductPagingRequest request)
+        [HttpGet("paging")]
+        public async Task<ActionResult> GetAllPaging([FromQuery] GetManageProductPagingRequest request)
         {
-            var product = await _productService.GetAllByCategoryId(languageId, request);
+            var product = await _productService.GetAllPaging(request);
 
             return Ok(product);
         }
@@ -100,7 +100,7 @@ namespace Shop.BackendApi.Controllers
 
             return BadRequest();
         }
-
+        
         //Images
         [HttpPost("{productId}/images")]
         public async Task<IActionResult> CreateImage(int productId, [FromForm] ProductImageCreateRequest request)
