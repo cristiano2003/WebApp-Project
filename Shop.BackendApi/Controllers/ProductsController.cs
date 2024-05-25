@@ -45,6 +45,7 @@ namespace Shop.BackendApi.Controllers
         }
 
         [HttpPost]
+        [Consumes("multipart/form-data")] 
         public async Task<ActionResult> Create([FromForm] ProductCreateRequest request)
         {
             if (!ModelState.IsValid)
@@ -65,7 +66,7 @@ namespace Shop.BackendApi.Controllers
         [HttpPut]
         public async Task<ActionResult> Update([FromForm] ProductUpdateRequest request)
         {
-
+             
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
@@ -159,6 +160,7 @@ namespace Shop.BackendApi.Controllers
         }
 
 
+      
 
     }
 }

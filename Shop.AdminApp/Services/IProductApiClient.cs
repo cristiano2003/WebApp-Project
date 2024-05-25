@@ -6,6 +6,8 @@ namespace Shop.AdminApp.Services
 {
     public interface IProductApiClient
     {
-        Task<PageResult<ProductVm>> GetPagings(GetManageProductPagingRequest request); 
+        Task<PageResult<ProductVm>> GetPagings(GetManageProductPagingRequest request);
+
+        Task<bool> CreateProduct(ProductCreateRequest request);
     }
 }

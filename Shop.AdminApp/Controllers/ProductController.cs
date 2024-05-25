@@ -1,10 +1,12 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.Extensions.Configuration;
 using Shop.AdminApp.Services;
 using Shop.Utilities.Constants;
 using Shop.ViewModels.Catalog.Products;
 using System.Threading.Tasks;
+
 
 namespace Shop.AdminApp.Controllers
 {
@@ -39,5 +41,31 @@ namespace Shop.AdminApp.Controllers
             }
             return View(data);
         }
+
+        [HttpGet]
+        public IActionResult Create()
+        {
+            return View();
+        }
+
+
+        [HttpPost]
+        public async Task<IActionResult> Create([FromForm] ProductCreateRequest request)
+        {
+            if (!ModelState.IsValid)
+                return View(request);
+
+            var result = await _productApiClient.CreateProduct(request);
+            if (result)
+            {
+                TempData["result"] = "Add the product successfully";
+                return RedirectToAction("Index");
+
+            }
+
+            ModelState.AddModelError("", "Production addition failed");
+            return View(request);
+        }
     }
 }
+
