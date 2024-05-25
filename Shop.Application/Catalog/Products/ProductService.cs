@@ -103,18 +103,19 @@ namespace Shop.Application.Catalog.Products
 
 
 
-        public async Task<PageResult<ProductViewModel>> GetAllPaging(GetManageProductPagingRequest request)
+        public async Task<PageResult<ProductVm>> GetAllPaging(GetManageProductPagingRequest request)
         {
             var query = from p in _context.Products
                         join pt in _context.ProductTranslations on p.Id equals pt.ProductId
                         join pic in _context.ProductInCategories on p.Id equals pic.ProductId
                         join c in _context.Categories on pic.CategoryId equals c.Id
+                        where pt.LanguageId == request.LanguageId
                         select new { p, pt, pic };
             //2. filter
             if (!string.IsNullOrEmpty(request.Keyword))
                 query = query.Where(x => x.pt.Name.Contains(request.Keyword));
 
-            if (request.CategoryIds.Count > 0)
+            if (request.CategoryIds != null && request.CategoryIds.Count > 0)
             {
                 query = query.Where(p => request.CategoryIds.Contains(p.pic.CategoryId));
             }
@@ -123,7 +124,7 @@ namespace Shop.Application.Catalog.Products
             int totalRow = await query.CountAsync();
             var data = await query.Skip((request.PageIndex - 1) * request.PageSize)
                 .Take(request.PageSize)
-                .Select(x => new ProductViewModel()
+                .Select(x => new ProductVm()
                 {
                     Id = x.p.Id,
                     Name = x.pt.Name,
@@ -140,7 +141,7 @@ namespace Shop.Application.Catalog.Products
                     ViewCount = x.p.ViewCount
                 }).ToListAsync();
 
-            var pageResult = new PageResult<ProductViewModel>()
+            var pageResult = new PageResult<ProductVm>()
             {
                 TotalRecords = totalRow,
                 Items = data
@@ -231,14 +232,14 @@ namespace Shop.Application.Catalog.Products
         }
 
 
-        public async Task<ProductViewModel> GetById(int productId, string  languageId)
+        public async Task<ProductVm> GetById(int productId, string  languageId)
         {
            var product =await  _context.Products.FindAsync(productId);
 
             var productTranslation = await _context.ProductTranslations.FirstOrDefaultAsync(x => x.ProductId == productId
             && x.LanguageId == languageId);
 
-            var productViewModel = new ProductViewModel()
+            var productViewModel = new ProductVm()
             {
                 Id = productId,
                 DateCreated = product.DateCreated,
@@ -320,7 +321,7 @@ namespace Shop.Application.Catalog.Products
             return viewModel;
         }
 
-        public async Task<PageResult<ProductViewModel>> GetAllByCategoryId(string languageId, GetPublicProductPagingRequest request)
+        public async Task<PageResult<ProductVm>> GetAllByCategoryId(string languageId, GetPublicProductPagingRequest request)
         {
 
             var query = from p in _context.Products
@@ -341,7 +342,7 @@ namespace Shop.Application.Catalog.Products
             int totalRow = await query.CountAsync();
             var data = await query.Skip((request.PageIndex - 1) * request.PageSize)
                 .Take(request.PageSize)
-                .Select(x => new ProductViewModel()
+                .Select(x => new ProductVm()
                 {
                     Id = x.p.Id,
                     Name = x.pt.Name,
@@ -358,7 +359,7 @@ namespace Shop.Application.Catalog.Products
                     ViewCount = x.p.ViewCount
                 }).ToListAsync();
 
-            var pageResult = new PageResult<ProductViewModel>()
+            var pageResult = new PageResult<ProductVm>()
             {
                 TotalRecords = totalRow,
                 Items = data
