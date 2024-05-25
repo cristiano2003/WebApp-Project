@@ -7,6 +7,6 @@ namespace Shop.AdminApp.Services
 {
     public interface ICategoryApiClient
     {
-        Task<ApiResult<List<CategoryVm>>> GetAll();
+        Task<List<CategoryVm>> GetAll(string languageId);
     }
 }

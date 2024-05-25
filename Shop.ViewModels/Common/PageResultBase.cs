@@ -11,7 +11,7 @@ namespace Shop.ViewModels.Common
         public int PageSize { get; set; }
 
         public int TotalRecords { get; set; }
-
+        
         public int PageCount
         {
             get
