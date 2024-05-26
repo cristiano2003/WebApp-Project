@@ -12,7 +12,6 @@
   <ItemGroup>
     <ProjectReference Include="..\Shop.Data\Shop.Data.csproj" />
     <ProjectReference Include="..\Shop.Utilities\Shop.Utilities.csproj" />
-    <ProjectReference Include="..\Shop.WebApp\Shop.WebApp.csproj" />
   </ItemGroup>
 
 </Project>

@@ -8,7 +8,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Logging;
 using Microsoft.IdentityModel.Protocols.OpenIdConnect;
 using Microsoft.IdentityModel.Tokens;
-using Shop.AdminApp.Services;
+using Shop.ApiIntegration;
 using Shop.ViewModels.Common;
 using Shop.ViewModels.System.Users;
 using System;

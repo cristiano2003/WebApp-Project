@@ -5,13 +5,13 @@ using Microsoft.AspNetCore.Mvc;
 using Shop.ViewModels.System.Users;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Configuration;
-using Shop.AdminApp.Services;
 using Microsoft.IdentityModel.Logging;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 using Shop.Utilities.Constants;
+using Shop.ApiIntegration;
 
 namespace Shop.AdminApp.Controllers
 {

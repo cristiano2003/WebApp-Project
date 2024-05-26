@@ -15,5 +15,10 @@ namespace Shop.Utilities.Constants
             public const string Token = "Token";
             public const string BaseAddress = "BaseAddress";
         }
+
+        public class ProductSettings
+        {
+            public const int NumberOfFeaturedProducts = 4;
+        }
     }
 }

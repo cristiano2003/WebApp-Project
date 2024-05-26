@@ -1,7 +1,7 @@
-﻿using Shop.Data.Entities;
-using Shop.Data.Enums;
-using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Shop.Data.Entities;
+using Shop.Data.Enums;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -13,13 +13,13 @@ namespace Shop.Data.Extensions
         public static void Seed(this ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<AppConfig>().HasData(
-               new AppConfig() { Key = "HomeTitle", Value = "This is home page of Shop" },
-               new AppConfig() { Key = "HomeKeyword", Value = "This is keyword of Shop" },
-               new AppConfig() { Key = "HomeDescription", Value = "This is description of Shop" }
+               new AppConfig() { Key = "HomeTitle", Value = "This is home page of eShopSolution" },
+               new AppConfig() { Key = "HomeKeyword", Value = "This is keyword of eShopSolution" },
+               new AppConfig() { Key = "HomeDescription", Value = "This is description of eShopSolution" }
                );
             modelBuilder.Entity<Language>().HasData(
-                new Language() { Id = "vi", Name = "Tieng Viet", IsDefault = false },
-                new Language() { Id = "en", Name = "English", IsDefault = true });
+                new Language() { Id = "vi", Name = "Tiếng Việt", IsDefault = true },
+                new Language() { Id = "en", Name = "English", IsDefault = false });
 
             modelBuilder.Entity<Category>().HasData(
                 new Category()
@@ -102,21 +102,21 @@ namespace Shop.Data.Extensions
                 Id = adminId,
                 UserName = "admin",
                 NormalizedUserName = "admin",
-                Email = "nguyentrungtrucl@gmail.com",
-                NormalizedEmail = "trungtruc.international@gmail.com",
+                Email = "tedu.international@gmail.com",
+                NormalizedEmail = "tedu.international@gmail.com",
                 EmailConfirmed = true,
                 PasswordHash = hasher.HashPassword(null, "Abcd1234$"),
                 SecurityStamp = string.Empty,
-                FirstName = "Truc",
-                LastName = "Nguyen",
-                Dob = new DateTime(2020, 01, 31) 
+                FirstName = "Toan",
+                LastName = "Bach",
+                Dob = new DateTime(2020, 01, 31)
             });
 
-           // modelBuilder.Entity<IdentityUserRole<string>>().HasData(new IdentityUserRole<string>
-            // {
-              //  RoleId = "8D04DCE2-969A-435D-BBA4-DF3F325983DC",
-               // UserId = "69BD714F-9576-45BA-B5B7-F00649BE00DE"
-            // });
+            modelBuilder.Entity<IdentityUserRole<Guid>>().HasData(new IdentityUserRole<Guid>
+            {
+                RoleId = roleId,
+                UserId = adminId
+            });
 
             modelBuilder.Entity<Slide>().HasData(
               new Slide() { Id = 1, Name = "Second Thumbnail label", Description = "Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.", SortOrder = 1, Url = "#", Image = "/themes/images/carousel/1.png", Status = Status.Active },

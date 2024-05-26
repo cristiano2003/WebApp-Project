@@ -6,12 +6,15 @@ using System.Threading.Tasks;
 using LazZiya.ExpressLocalization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Shop.ApiIntegration;
 using Shop.WebApp.LocalizationResources;
+
 
 namespace Shop.WebApp
 {
@@ -33,6 +36,7 @@ namespace Shop.WebApp
 				new CultureInfo("vi"),
 			};
 
+			services.AddHttpClient();
 			services.AddControllersWithViews()
 				.AddExpressLocalization<ExpressLocalizationResource, ViewLocalizationResource>(ops =>
 				{
@@ -62,8 +66,17 @@ namespace Shop.WebApp
 						o.SupportedUICultures = cultures;
 						o.DefaultRequestCulture = new RequestCulture("vi");
 					};
-				}); ;
-		}
+				});
+
+            services.AddSession(options =>
+            {
+                options.IdleTimeout = TimeSpan.FromMinutes(30);
+            });
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            services.AddTransient<ISlideApiClient, SlideApiClient>(); 
+            services.AddTransient<IProductApiClient, ProductApiClient>();
+          
+        }
 
 		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
 		public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -84,6 +97,7 @@ namespace Shop.WebApp
 			app.UseRouting();
 
 			app.UseAuthorization();
+			app.UseSession();
 			app.UseRequestLocalization();
 			app.UseEndpoints(endpoints =>
 			{

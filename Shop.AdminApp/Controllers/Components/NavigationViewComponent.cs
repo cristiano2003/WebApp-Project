@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Shop.AdminApp.Models;
-using Shop.AdminApp.Services;
+using Shop.ApiIntegration;
 using Shop.Utilities.Constants;
 using System.Threading.Tasks;
 

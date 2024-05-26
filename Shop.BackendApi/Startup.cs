@@ -26,6 +26,8 @@ using Shop.ViewModels.System.Users;
 using Shop.Application.System.Roles;
 using Shop.Application.System.Languages;
 using Shop.Application.Catalog.Categories;
+using Shop.Application.Utilities.Slides;
+using Microsoft.AspNetCore.Http;
 
 namespace Shop.BackendApi
 {
@@ -58,10 +60,11 @@ namespace Shop.BackendApi
             services.AddTransient<ILanguageService, LanguageService>();
             services.AddTransient<IUserService, UserService>();
             services.AddTransient<IRoleService, RoleService>();
+            services.AddTransient<ISlideService, SlideService>();
             //  services.AddTransient<IValidator<LoginRequest>, LoginRequestValidator>();
             // services.AddTransient<IValidator<RegisterRequest>,RegisterRequestValidator>();
 
-
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddControllers()
              .AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<LoginRequestValidator>());
 

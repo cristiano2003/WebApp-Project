@@ -1,12 +1,13 @@
 ﻿using Shop.ViewModels.Common;
 using Shop.ViewModels.System.Languages;
+using Shop.ViewModels.Utilities.Slides;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace Shop.AdminApp.Services
+namespace Shop.ApiIntegration
 {
     public interface ILanguageApiClient
     {
-        Task<ApiResult<List<LanguageVm>>> GetAll();
+        Task<ApiResult<List<SlideVm>>> GetAll();
     }
 }

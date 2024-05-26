@@ -2,9 +2,10 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
-using Shop.AdminApp.Services;
+using Shop.ApiIntegration;
 using Shop.ViewModels.Common;
 using Shop.ViewModels.System.Languages;
+using Shop.ViewModels.Utilities.Slides;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,7 +13,7 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
 
-namespace eShopSolution.AdminApp.Services
+namespace Shop.ApiIntegration
 {
     public class LanguageApiClient : BaseApiClient, ILanguageApiClient
     {
@@ -23,9 +24,9 @@ namespace eShopSolution.AdminApp.Services
         {
         }
 
-        public async Task<ApiResult<List<LanguageVm>>> GetAll()
+        public async Task<ApiResult<List<SlideVm>>> GetAll()
         {
-            return await GetAsync<ApiResult<List<LanguageVm>>>("/api/languages");
+            return await GetAsync<ApiResult<List<SlideVm>>>("/api/languages");
         }
     }
 }
