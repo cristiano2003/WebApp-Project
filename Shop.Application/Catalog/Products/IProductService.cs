@@ -41,5 +41,6 @@ namespace Shop.Application.Catalog.Products
 
         public Task<PageResult<ProductVm>> GetAllByCategoryId(string languageId, GetPublicProductPagingRequest request);
 
+        public Task<ApiResult<bool>> CategoryAssign(int id, CategoryAssignRequest request);
     }
 }

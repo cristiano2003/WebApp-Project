@@ -7,6 +7,7 @@ using Microsoft.VisualBasic;
 using Shop.AdminApp.Services;
 using Shop.Utilities.Constants;
 using Shop.ViewModels.Catalog.Products;
+using Shop.ViewModels.Common;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -80,6 +81,52 @@ namespace Shop.AdminApp.Controllers
 
             ModelState.AddModelError("", "Production addition failed");
             return View(request);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> CategoryAssign(int id)
+        {
+            var roleAssignRequest = await GetCategoryAssignRequest(id);
+            return View(roleAssignRequest);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> CategoryAssign(CategoryAssignRequest request)
+        {
+            if (!ModelState.IsValid)
+                return View();
+
+            var result = await _productApiClient.CategoryAssign(request.Id, request);
+
+            if (result.IsSucceeded)
+            {
+                TempData["result"] = "Update category successfully";
+                return RedirectToAction("Index");
+            }
+
+            ModelState.AddModelError("", result.Message);
+            var roleAssignRequest = await GetCategoryAssignRequest(request.Id);
+
+            return View(roleAssignRequest);
+        }
+
+        private async Task<CategoryAssignRequest> GetCategoryAssignRequest(int id)
+        {
+            var languageId = HttpContext.Session.GetString(SystemConstants.AppSettings.DefaultLanguageId);
+
+            var productObj = await _productApiClient.GetById(id, languageId);
+            var categories = await _categoryApiClient.GetAll(languageId);
+            var categoryAssignRequest = new CategoryAssignRequest();
+            foreach (var role in categories)
+            {
+                categoryAssignRequest.Categories.Add(new SelectItem()
+                {
+                    Id = role.Id.ToString(),
+                    Name = role.Name,
+                    Selected = productObj.Categories.Contains(role.Name)
+                });
+            }
+            return categoryAssignRequest;
         }
     }
 }
