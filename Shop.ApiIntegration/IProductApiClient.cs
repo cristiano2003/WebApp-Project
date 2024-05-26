@@ -3,7 +3,7 @@ using Shop.ViewModels.Common;
 using System;
 using System.Threading.Tasks;
 
-namespace Shop.AdminApp.Services
+namespace Shop.ApiIntegration
 {
     public interface IProductApiClient
     {

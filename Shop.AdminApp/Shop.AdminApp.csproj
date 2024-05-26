@@ -32,6 +32,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Shop.ApiIntegration\Shop.ApiIntegration.csproj" />
     <ProjectReference Include="..\Shop.Utilities\Shop.Utilities.csproj" />
     <ProjectReference Include="..\Shop.ViewModels\Shop.ViewModels.csproj" />
   </ItemGroup>

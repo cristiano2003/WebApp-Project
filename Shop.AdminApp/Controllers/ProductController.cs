@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Extensions.Configuration;
 using Microsoft.VisualBasic;
-using Shop.AdminApp.Services;
+using Shop.ApiIntegration;
 using Shop.Utilities.Constants;
 using Shop.ViewModels.Catalog.Products;
 using Shop.ViewModels.Common;

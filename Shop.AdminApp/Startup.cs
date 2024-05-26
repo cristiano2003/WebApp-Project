@@ -1,4 +1,4 @@
-using eShopSolution.AdminApp.Services;
+
 using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Shop.AdminApp.Services;
+using Shop.ApiIntegration;
 using Shop.ViewModels.System.Users;
 using System;
 using System.Collections.Generic;

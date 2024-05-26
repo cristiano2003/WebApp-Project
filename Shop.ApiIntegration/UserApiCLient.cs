@@ -12,7 +12,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 
-namespace Shop.AdminApp.Services
+namespace Shop.ApiIntegration
 {
     public class UserApiClient : IUserApiClient
     {

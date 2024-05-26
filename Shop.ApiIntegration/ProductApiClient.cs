@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
-using Shop.AdminApp.Services;
+using Shop.ApiIntegration;
 using Shop.Utilities.Constants;
 using Shop.ViewModels.Catalog.Products;
 using Shop.ViewModels.Common;
@@ -15,9 +15,9 @@ using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Shop.AdminApp.Services
+namespace Shop.ApiIntegration
 {
-        public class ProductApiClient : BaseApiClient, IProductApiClient
+    public class ProductApiClient : BaseApiClient, IProductApiClient
         {
             private readonly IHttpContextAccessor _httpContextAccessor;
             private readonly IHttpClientFactory _httpClientFactory;
