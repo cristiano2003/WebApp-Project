@@ -19,6 +19,8 @@ namespace Shop.ViewModels.Catalog.Products
         public string SeoAlias { get; set; }
         public string LanguageId { set; get; }
 
+        public bool IFeatured { get; set; }
+
         public IFormFile ThumbnailImage { get; set; }
 
     }
