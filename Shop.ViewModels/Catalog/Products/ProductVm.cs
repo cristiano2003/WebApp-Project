@@ -24,5 +24,7 @@ namespace Shop.ViewModels.Catalog.Products
         public string LanguageId { set; get; }
 
         public List<string> Categories { set; get; } = new List<string>();
+
+        public string ThumbnailImage { set; get; }
     }
 }

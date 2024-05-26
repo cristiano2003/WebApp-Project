@@ -1,6 +1,7 @@
 ﻿
 using Shop.ViewModels.Common;
 using Shop.ViewModels.System.Languages;
+using Shop.ViewModels.Utilities.Slides;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -10,6 +11,6 @@ namespace Shop.Application.System.Languages
 {
     public interface ILanguageService
     {
-        Task<ApiResult<List<LanguageVm>>> GetAll();
+        Task<ApiResult<List<SlideVm>>> GetAll();
     }
 }

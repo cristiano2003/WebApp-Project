@@ -6,6 +6,7 @@ using Microsoft.IdentityModel.Tokens;
 using Shop.Data.EF;
 using Shop.ViewModels.Common;
 using Shop.ViewModels.System.Languages;
+using Shop.ViewModels.Utilities.Slides;
 using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
@@ -28,14 +29,14 @@ namespace Shop.Application.System.Languages
             _context = context;
         }
 
-        public async Task<ApiResult<List<LanguageVm>>> GetAll()
+        public async Task<ApiResult<List<SlideVm>>> GetAll()
         {
-            var languages = await _context.Languages.Select(x => new LanguageVm()
+            var languages = await _context.Slides.Select(x => new SlideVm()
             {
                 Id = x.Id,
                 Name = x.Name
             }).ToListAsync();
-            return new ApiSuccessResult<List<LanguageVm>>(languages);
+            return new ApiSuccessResult<List<SlideVm>>(languages);
         }
     }
 }

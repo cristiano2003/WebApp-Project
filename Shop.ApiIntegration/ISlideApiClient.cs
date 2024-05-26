@@ -1,4 +1,5 @@
-﻿using Shop.ViewModels.Common;
+﻿using Shop.ViewModels.Catalog.Categories;
+using Shop.ViewModels.Common;
 using Shop.ViewModels.System.Languages;
 using Shop.ViewModels.Utilities.Slides;
 using System.Collections.Generic;
@@ -6,8 +7,8 @@ using System.Threading.Tasks;
 
 namespace Shop.ApiIntegration
 {
-    public interface ILanguageApiClient
+    public interface ISlideApiClient
     {
-        Task<ApiResult<List<SlideVm>>> GetAll();
+        public Task<List<SlideVm>> GetAll();
     }
 }
