@@ -29,6 +29,7 @@ using Shop.Application.Catalog.Categories;
 using Shop.Application.Utilities.Slides;
 using Microsoft.AspNetCore.Http;
 
+
 namespace Shop.BackendApi
 {
     public class Startup

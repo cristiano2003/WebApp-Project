@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
+
 using LazZiya.ExpressLocalization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -133,7 +134,7 @@ namespace Shop.WebApp
 
                 endpoints.MapControllerRoute(
                      name: "default",
-                     pattern: "{culture=vi}/{controller=Home}/{action=Index}/{id?}"); 
+                     pattern: "{culture=vi}/{controller=Home}/{action=Index}/{id?}");
             });
         }
     }

@@ -1,8 +1,11 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Shop.Application.Catalog.Categories;
-using Shop.Application.Catalog.Products;
-using System.Threading.Tasks;
 
 namespace Shop.BackendApi.Controllers
 {
@@ -11,19 +14,25 @@ namespace Shop.BackendApi.Controllers
     public class CategoriesController : ControllerBase
     {
         private readonly ICategoryService _categoryService;
-        public CategoriesController(ICategoryService productService)
-        {
-            _categoryService = productService;
 
+        public CategoriesController(
+            ICategoryService categoryService)
+        {
+            _categoryService = categoryService;
         }
 
-
         [HttpGet]
-        public async Task<ActionResult> GetAll(string languageId)
+        public async Task<IActionResult> GetAll(string languageId)
         {
-            var product = await _categoryService.GetAll(languageId);
+            var products = await _categoryService.GetAll(languageId);
+            return Ok(products);
+        }
 
-            return Ok(product);
+        [HttpGet("{id}/{languageId}")]
+        public async Task<IActionResult> GetById(string languageId, int id)
+        {
+            var category = await _categoryService.GetById(languageId, id);
+            return Ok(category);
         }
     }
 }

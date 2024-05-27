@@ -13,7 +13,7 @@ using Shop.ApiIntegration;
 using Shop.Utilities.Constants;
 using Shop.WebApp.Models;
 
-namespace sHOP.WebApp.Controllers
+namespace Shop.WebApp.Controllers
 {
     public class HomeController : Controller
     {

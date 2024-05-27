@@ -15,7 +15,7 @@ using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Shop.ApiIntegration
+namespace  Shop.ApiIntegration
 {
     public class ProductApiClient : BaseApiClient, IProductApiClient
     {
@@ -102,6 +102,7 @@ namespace Shop.ApiIntegration
             }
 
             //requestContent.Add(new StringContent(request.Id.ToString()), "id");
+
             requestContent.Add(new StringContent(request.Name.ToString()), "name");
             requestContent.Add(new StringContent(request.Description.ToString()), "description");
 
