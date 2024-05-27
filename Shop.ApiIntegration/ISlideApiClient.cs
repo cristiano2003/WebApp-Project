@@ -9,6 +9,6 @@ namespace Shop.ApiIntegration
 {
     public interface ISlideApiClient
     {
-        public Task<List<SlideVm>> GetAll();
+        public Task<List<SelectedListItem>> GetAll();
     }
 }
