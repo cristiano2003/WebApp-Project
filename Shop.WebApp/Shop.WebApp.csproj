@@ -16,10 +16,12 @@
     </PackageReference>
     <PackageReference Include="Microsoft.Extensions.Configuration.FileExtensions" Version="3.1.32" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="3.1.32" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.5" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Controllers\Components\" />
     <Folder Include="wwwroot\themes\less\oregional\" />
   </ItemGroup>
 

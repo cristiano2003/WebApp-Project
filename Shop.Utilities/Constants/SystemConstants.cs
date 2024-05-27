@@ -19,6 +19,7 @@ namespace Shop.Utilities.Constants
         public class ProductSettings
         {
             public const int NumberOfFeaturedProducts = 4;
+            public const int NumberOfLatestProducts = 4;
         }
     }
 }

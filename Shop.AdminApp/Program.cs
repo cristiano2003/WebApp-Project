@@ -8,7 +8,7 @@ using System.Linq;
 using System.Threading.Tasks;
 
 namespace Shop.AdminApp
-{
+{ 
     public class Program
     {
         public static void Main(string[] args)
