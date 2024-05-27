@@ -24,9 +24,9 @@ namespace Shop.ApiIntegration
         {
         }
 
-        public async Task<ApiResult<List<SlideVm>>> GetAll()
+        public async Task<ApiResult<List<LanguageVm>>> GetAll()
         {
-            return await GetAsync<ApiResult<List<SlideVm>>>("/api/languages");
+            return await GetAsync<ApiResult<List<LanguageVm>>>("/api/languages");
         }
     }
 }

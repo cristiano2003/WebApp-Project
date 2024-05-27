@@ -5,7 +5,7 @@ using System.Text;
 namespace Shop.ViewModels.Utilities.Slides
 {
   
-        public class SlideVm
+        public class SelectedListItem
         {
         public int Id { set; get; }
         public string Name { set; get; }

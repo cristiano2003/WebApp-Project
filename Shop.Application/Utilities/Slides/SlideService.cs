@@ -21,10 +21,10 @@ namespace Shop.Application.Utilities.Slides
             _context = context;
         }
 
-        public async Task<List<SlideVm>> GetAll()
+        public async Task<List<SelectedListItem>> GetAll()
         {
             var slides = await _context.Slides.OrderBy(x => x.SortOrder)
-                .Select(x => new SlideVm()
+                .Select(x => new SelectedListItem()
                 {
                     Id = x.Id,
                     Name = x.Name,

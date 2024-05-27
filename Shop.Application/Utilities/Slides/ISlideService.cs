@@ -9,6 +9,6 @@ namespace Shop.Application.Utilities.Slides
 {
    public interface ISlideService
     {
-        Task<List<SlideVm>> GetAll();
+        Task<List<SelectedListItem>> GetAll();
     }
 }

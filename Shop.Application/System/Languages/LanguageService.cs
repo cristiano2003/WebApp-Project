@@ -29,14 +29,14 @@ namespace Shop.Application.System.Languages
             _context = context;
         }
 
-        public async Task<ApiResult<List<SlideVm>>> GetAll()
+        public async Task<ApiResult<List<SelectedListItem>>> GetAll()
         {
-            var languages = await _context.Slides.Select(x => new SlideVm()
+            var languages = await _context.Slides.Select(x => new SelectedListItem()
             {
                 Id = x.Id,
                 Name = x.Name
             }).ToListAsync();
-            return new ApiSuccessResult<List<SlideVm>>(languages);
+            return new ApiSuccessResult<List<SelectedListItem>>(languages);
         }
     }
 }

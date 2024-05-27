@@ -1,4 +1,5 @@
-﻿using Shop.ViewModels.Common;
+﻿using Microsoft.AspNetCore.Mvc.Rendering;
+using Shop.ViewModels.Common;
 using Shop.ViewModels.System.Languages;
 using Shop.ViewModels.Utilities.Slides;
 using System.Collections.Generic;
@@ -8,6 +9,6 @@ namespace Shop.ApiIntegration
 {
     public interface ILanguageApiClient
     {
-        Task<ApiResult<List<SlideVm>>> GetAll();
+        Task<ApiResult<List<LanguageVm>>> GetAll();
     }
 }
