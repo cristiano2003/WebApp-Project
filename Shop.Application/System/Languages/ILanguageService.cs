@@ -11,6 +11,6 @@ namespace Shop.Application.System.Languages
 {
     public interface ILanguageService
     {
-        Task<ApiResult<List<SelectedListItem>>> GetAll();
+        Task<ApiResult<List<LanguageVm>>> GetAll();
     }
 }

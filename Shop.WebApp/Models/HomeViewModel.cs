@@ -6,7 +6,7 @@ namespace Shop.WebApp.Models
 {
     public class HomeViewModel
     {
-        public List<SelectedListItem> Slides { get; set; }
+        public List<SlideVm> Slides { get; set; }
 
         public List<ProductVm> FeaturedProducts { get; set; }
 

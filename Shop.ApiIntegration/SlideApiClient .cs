@@ -19,9 +19,9 @@ namespace Shop.ApiIntegration
             : base(httpClientFactory, httpContextAccessor, configuration)
         {
         }
-           public async Task<List<SelectedListItem>> GetAll()
+           public async Task<List<SlideVm>> GetAll()
             {
-                return await GetListAsync<SelectedListItem>("/api/slides");
+                return await GetListAsync<SlideVm>("/api/slides");
             }
         
     }
