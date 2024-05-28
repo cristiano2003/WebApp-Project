@@ -10,11 +10,11 @@ using Shop.Utilities.Constants;
 using Shop.WebApp.Models;
 
 namespace Shop.WebApp.Controllers
-{  
+{
     public class CartController : Controller
     {
         private readonly IProductApiClient _productApiClient;
-        
+
         public CartController(IProductApiClient productApiClient)
         {
             _productApiClient = productApiClient;
@@ -23,6 +23,16 @@ namespace Shop.WebApp.Controllers
         public IActionResult Index()
         {
             return View();
+        }
+
+        [HttpGet]
+        public IActionResult GetListItems()
+        {
+            var session = HttpContext.Session.GetString(SystemConstants.CartSession);
+            List<CartItemViewModel> currentCart = new List<CartItemViewModel>();
+            if (session != null)
+                currentCart = JsonConvert.DeserializeObject<List<CartItemViewModel>>(session);
+            return Ok(currentCart);
         }
 
         public async Task<IActionResult> AddToCart(int id, string languageId)
@@ -39,20 +49,21 @@ namespace Shop.WebApp.Controllers
             {
                 quantity = currentCart.First(x => x.ProductId == id).Quantity + 1;
             }
-            
+
             var cartItem = new CartItemViewModel()
             {
                 ProductId = id,
                 Description = product.Description,
                 Image = product.ThumbnailImage,
                 Name = product.Name,
+                Price = product.Price,
                 Quantity = quantity
             };
 
             currentCart.Add(cartItem);
 
             HttpContext.Session.SetString(SystemConstants.CartSession, JsonConvert.SerializeObject(currentCart));
-            return Ok();
+            return Ok(currentCart);
         }
     }
 }
