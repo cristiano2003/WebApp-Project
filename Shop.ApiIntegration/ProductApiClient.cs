@@ -163,5 +163,10 @@ namespace  Shop.ApiIntegration
             var data = await GetListAsync<ProductVm>($"/api/products/latest/{languageId}/{take}");
             return data;
         }
+
+        public async Task<bool> DeleteProduct(int id)
+        {
+            return await Delete($"/api/products/" + id);
+        }
     }
 }

@@ -23,8 +23,10 @@ namespace Shop.ViewModels.Catalog.Products
         public string SeoAlias { get; set; }
         public string LanguageId { set; get; }
 
-        public List<string> Categories { set; get; } = new List<string>();
+        public bool? IsFeatured { get; set; }
 
-        public string ThumbnailImage { set; get; }
+        public string ThumbnailImage { get; set; }
+
+        public List<string> Categories { get; set; } = new List<string>();
     }
 }

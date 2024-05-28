@@ -1,5 +1,4 @@
-﻿
-using Shop.ViewModels.Catalog.Categories;
+﻿using Shop.ViewModels.Catalog.Categories;
 using Shop.ViewModels.Catalog.Products;
 using Shop.ViewModels.ProductImages;
 using System;
