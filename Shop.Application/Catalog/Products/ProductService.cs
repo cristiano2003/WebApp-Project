@@ -224,7 +224,7 @@ namespace Shop.Application.Catalog.Products
             };
             return productViewModel;
         }
-
+        
         public async Task<ProductImageViewModel> GetImageById(int imageId)
         {
             var image = await _context.ProductImages.FindAsync(imageId);
