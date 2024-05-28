@@ -14,4 +14,8 @@
     <ProjectReference Include="..\Shop.Utilities\Shop.Utilities.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Sales\" />
+  </ItemGroup>
+
 </Project>
