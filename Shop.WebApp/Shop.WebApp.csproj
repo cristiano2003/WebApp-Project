@@ -22,6 +22,7 @@
 
   <ItemGroup>
     <Folder Include="Controllers\Components\" />
+    <Folder Include="Views\Cart\" />
     <Folder Include="wwwroot\themes\less\oregional\" />
   </ItemGroup>
 

@@ -2,19 +2,19 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using eShopSolution.ApiIntegration;
-using eShopSolution.Utilities.Constants;
-using eShopSolution.WebApp.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
+using Shop.ApiIntegration;
+using Shop.Utilities.Constants;
+using Shop.WebApp.Models;
 
-namespace eShopSolution.WebApp.Controllers
-{
+namespace Shop.WebApp.Controllers
+{  
     public class CartController : Controller
     {
         private readonly IProductApiClient _productApiClient;
-
+        
         public CartController(IProductApiClient productApiClient)
         {
             _productApiClient = productApiClient;
@@ -39,7 +39,7 @@ namespace eShopSolution.WebApp.Controllers
             {
                 quantity = currentCart.First(x => x.ProductId == id).Quantity + 1;
             }
-
+            
             var cartItem = new CartItemViewModel()
             {
                 ProductId = id,
